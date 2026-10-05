@@ -45,6 +45,12 @@ function getErrorMessage(error: any) {
 async function startServer() {
   const app = express();
   const PORT = Number(process.env.PORT) || 3000;
+  app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+  });
+});
 
   // Middleware
   app.use(express.json({ limit: "50mb" }));
