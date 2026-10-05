@@ -90,7 +90,7 @@ export default async function handler(
 
     const response =
       await generateContentWithRetry({
-        model: "gemini-2.5-flash",
+       model: "gemini-3.8-flash",
 
         contents: {
           parts,
