@@ -11,7 +11,7 @@ const ai = new GoogleGenAI({
 
 async function generateContentWithRetry(
   request: any,
-  maxRetries = 5
+  maxRetries = 3
 ) {
   for (let attempt = 0; attempt < maxRetries; attempt++) {
     try {
