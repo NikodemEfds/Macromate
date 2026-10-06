@@ -28,15 +28,18 @@ async function generateContentWithRetry(
         error?.message?.includes("503");
 
       if (isRetryable) {
-        console.log(
-          `Gemini API busy. Retrying in ${
-            2 * (attempt + 1)
-          }s...`
-        );
+const delay = Math.min(
+  1000 * Math.pow(2, attempt),
+  8000
+);
 
-        await new Promise((resolve) =>
-    setTimeout(resolve, 2000 * (attempt + 1))
-  );
+console.log(
+  `Gemini API busy. Retrying in ${delay}ms...`
+);
+
+await new Promise((resolve) =>
+  setTimeout(resolve, delay)
+);
       } else {
         throw error;
       }
