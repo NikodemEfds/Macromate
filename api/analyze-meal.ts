@@ -96,8 +96,11 @@ export default async function handler(
           parts,
         },
 
-        config: {
-          responseMimeType: "application/json",
+          config: {
+    thinkingConfig: {
+      thinkingLevel: "low",
+    },
+    responseMimeType: "application/json",
 
           responseSchema: {
             type: Type.OBJECT,
