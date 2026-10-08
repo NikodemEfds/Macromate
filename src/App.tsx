@@ -74,7 +74,11 @@ export default function App() {
   const handleLogMeal = (newMeal: MealLog) => {
     setMeals([newMeal, ...meals]);
   };
-
+const handleDeleteMeal = (mealId: string) => {
+  setMeals((currentMeals) =>
+    currentMeals.filter((meal) => meal.id !== mealId)
+  );
+};
   const handleToggleFavorite = (meal: MealLog) => {
     const exists = favorites.some((f) => f.name === meal.name);
     if (exists) {
@@ -192,11 +196,19 @@ export default function App() {
               ) : (
                 <div className="flex flex-col gap-3">
                   {todayMeals.map((meal) => (
-                    <MealCard 
-                      key={meal.id} 
-                      meal={meal} 
-                      isFavorite={favorites.some(f => f.name === meal.name)}
-                      onToggleFavorite={() => handleToggleFavorite(meal)}
+       <MealCard
+  key={meal.id}
+  meal={meal}
+  isFavorite={favorites.some(
+    (f) => f.name === meal.name
+  )}
+  onToggleFavorite={() =>
+    handleToggleFavorite(meal)
+  }
+  onDelete={() =>
+    handleDeleteMeal(meal.id)
+  }
+
                     />
                   ))}
                 </div>
